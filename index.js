@@ -10,13 +10,7 @@ const app = express();
 
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: "http://127.0.0.1:5500/",
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
 
