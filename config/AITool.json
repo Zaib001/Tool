@@ -1,0 +1,27 @@
+[
+    {
+      "name": "AI Tool 1",
+      "img": "url_to_image_1",
+      "varient": "free",
+      "genre": ["Action", "Romance"],
+      "description": "Description for AI Tool 1",
+      "websiteUrl": "https://www.ai-tool-1.com"
+    },
+    {
+      "name": "AI Tool 2",
+      "img": "url_to_image_2",
+      "varient": "paid",
+      "genre": ["Romance", "Fantasy"],
+      "description": "Description for AI Tool 2",
+      "websiteUrl": "https://www.ai-tool-2.com"
+    },
+    {
+      "name": "AI Tool 3",
+      "img": "url_to_image_3",
+      "varient": "freemium",
+      "genre": ["Crime", "Adventure"],
+      "description": "Description for AI Tool 3",
+      "websiteUrl": "https://www.ai-tool-3.com"
+    }
+  ]
+  
