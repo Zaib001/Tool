@@ -38,11 +38,7 @@ const AIController = {
       const query = {
         name: { $regex: search, $options: "i" },
         genre: { $in: genre },
-<<<<<<< HEAD
         varient: { $in: varient },
-=======
-        varient: { $in: varient }
->>>>>>> a25739a518307133bc1cdca68d50d030f4fe84d8
       };
 
       // Filter by varient if it's not "all"
@@ -82,7 +78,7 @@ const AIController = {
       const savedTool = await newTool.save();
       res.status(201).json(savedTool);
     } catch (error) {
-      res.status(500).json({ error: error.message || "Internal Server Error" });
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
   async addToolsdata(req, res) {
