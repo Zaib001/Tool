@@ -35,22 +35,22 @@ const server = app.listen(port, () => {
 });
 
 // Graceful shutdown
-process.on('SIGINT', () => {
-  console.log('SIGINT received. Closing server and database connection.');
-  server.close(() => {
-    connection.close(() => {
-      console.log('Server and database connection closed.');
-      process.exit(0);
-    });
-  });
-});
+// process.on('SIGINT', () => {
+//   console.log('SIGINT received. Closing server and database connection.');
+//   server.close(() => {
+//     connection.close(() => {
+//       console.log('Server and database connection closed.');
+//       process.exit(0);
+//     });
+//   });
+// });
 
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received. Closing server and database connection.');
-  server.close(() => {
-    connection.close(() => {
-      console.log('Server and database connection closed.');
-      process.exit(0);
-    });
-  });
-});
+// process.on('SIGTERM', () => {
+//   console.log('SIGTERM received. Closing server and database connection.');
+//   server.close(() => {
+//     connection.close(() => {
+//       console.log('Server and database connection closed.');
+//       process.exit(0);
+//     });
+//   });
+// });

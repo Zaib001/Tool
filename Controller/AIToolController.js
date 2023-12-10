@@ -38,6 +38,7 @@ const AIController = {
       const query = {
         name: { $regex: search, $options: "i" },
         genre: { $in: genre },
+        varient: { $in: varient },
       };
 
       // Filter by varient if it's not "all"
@@ -48,10 +49,13 @@ const AIController = {
 
       const varientQuery = { varient: { $in: varient } }; // Fix property name: Change "varient" to "variant"
       Object.assign(query, varientQuery);
+    
       const tools = await AITool.find(query)
-        .sort(sortBy)
-        .skip(page * limit)
-        .limit(limit);
+      .sort(sortBy)
+      .hint({ _id: 1 })
+      .allowDiskUse(true)
+      .skip(page * limit)
+      .limit(limit);
 
       const total = await AITool.countDocuments(query);
 
@@ -60,11 +64,10 @@ const AIController = {
         total,
         page: page + 1,
         limit,
-        genres: genreOptions,
+        genres: genre,
         tools,
       };
-
-      res.status(200).json(response);
+      res.status(200).json({response});
     } catch (err) {
       res.status(500).json({ error: true, message: "Internal Server Error" });
     }
