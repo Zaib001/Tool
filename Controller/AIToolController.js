@@ -75,7 +75,7 @@ const AIController = {
       const savedTool = await newTool.save();
       res.status(201).json(savedTool);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      res.status(500).json({ error: error.message || "Internal Server Error" });
     }
   },
   async addToolsdata(req, res) {
