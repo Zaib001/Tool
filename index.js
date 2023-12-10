@@ -7,25 +7,26 @@ const erroeHandling = require("./midleware/errorHandling")
 const cookieParser = require('cookie-parser');
 const app = express();
 
-
 app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500/",
+    origin: "http://localhost:3000",
     optionsSuccessStatus: 200,
     credentials: true,
   })
 );
 
-app.use(express.json({ limit: "50mb" }));
+// Handle preflight requests
+app.options("*", cors());
 
+app.use(express.json({ limit: "50mb" }));
 app.use(router);
 
 const port = process.env.PORT || 8000;
 
 // Database Connection
-connection();
+const db = connection();
 
 app.use("/storage", express.static("storage"));
 app.use(erroeHandling);
@@ -35,6 +36,7 @@ const server = app.listen(port, () => {
 });
 
 // Graceful shutdown
+<<<<<<< HEAD
 // process.on('SIGINT', () => {
 //   console.log('SIGINT received. Closing server and database connection.');
 //   server.close(() => {
@@ -54,3 +56,24 @@ const server = app.listen(port, () => {
 //     });
 //   });
 // });
+=======
+process.on('SIGINT', () => {
+  console.log('SIGINT received. Closing server and database connection.');
+  server.close(() => {
+    db.close(() => {
+      console.log('Server and database connection closed.');
+      process.exit(0);
+    });
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received. Closing server and database connection.');
+  server.close(() => {
+    db.close(() => {
+      console.log('Server and database connection closed.');
+      process.exit(0);
+    });
+  });
+});
+>>>>>>> a25739a518307133bc1cdca68d50d030f4fe84d8
