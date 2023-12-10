@@ -26,7 +26,7 @@ app.use(router);
 const port = process.env.PORT || 8000;
 
 // Database Connection
-connection();
+const db = connection();
 
 app.use("/storage", express.static("storage"));
 app.use(erroeHandling);
@@ -39,7 +39,7 @@ const server = app.listen(port, () => {
 process.on('SIGINT', () => {
   console.log('SIGINT received. Closing server and database connection.');
   server.close(() => {
-    connection.close(() => {
+    db.close(() => {
       console.log('Server and database connection closed.');
       process.exit(0);
     });
@@ -49,7 +49,7 @@ process.on('SIGINT', () => {
 process.on('SIGTERM', () => {
   console.log('SIGTERM received. Closing server and database connection.');
   server.close(() => {
-    connection.close(() => {
+    db.close(() => {
       console.log('Server and database connection closed.');
       process.exit(0);
     });
