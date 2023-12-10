@@ -38,6 +38,7 @@ const AIController = {
       const query = {
         name: { $regex: search, $options: "i" },
         genre: { $in: genre },
+        varient: { $in: varient }
       };
 
       // Filter by varient if it's not "all"
