@@ -31,49 +31,7 @@ const db = connection();
 app.use("/storage", express.static("storage"));
 app.use(erroeHandling);
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Listening on port ${port}!`);
 });
 
-// Graceful shutdown
-<<<<<<< HEAD
-// process.on('SIGINT', () => {
-//   console.log('SIGINT received. Closing server and database connection.');
-//   server.close(() => {
-//     connection.close(() => {
-//       console.log('Server and database connection closed.');
-//       process.exit(0);
-//     });
-//   });
-// });
-
-// process.on('SIGTERM', () => {
-//   console.log('SIGTERM received. Closing server and database connection.');
-//   server.close(() => {
-//     connection.close(() => {
-//       console.log('Server and database connection closed.');
-//       process.exit(0);
-//     });
-//   });
-// });
-=======
-process.on('SIGINT', () => {
-  console.log('SIGINT received. Closing server and database connection.');
-  server.close(() => {
-    db.close(() => {
-      console.log('Server and database connection closed.');
-      process.exit(0);
-    });
-  });
-});
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received. Closing server and database connection.');
-  server.close(() => {
-    db.close(() => {
-      console.log('Server and database connection closed.');
-      process.exit(0);
-    });
-  });
-});
->>>>>>> a25739a518307133bc1cdca68d50d030f4fe84d8
