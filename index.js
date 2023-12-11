@@ -11,7 +11,8 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://hubitai.co/",
+    origin: 'https://hubitai.co',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 200,
     credentials: true,
   })
